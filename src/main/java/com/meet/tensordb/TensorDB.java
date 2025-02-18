@@ -1,12 +1,24 @@
 package com.meet.tensordb;
-public class TensorDB{
+
+public class TensorDB {
     static {
-        System.out.println("tensordb");
+        System.load(System.getProperty("user.dir") + "/tensorlib.dll");
     }
-    public native int processTensor();
-    public static void main(String[] args){
+
+    // Native methods (linked to Rust)
+    public native void store(String key, String data);
+    public native String get(String key);
+
+    public static void main(String[] args) {
         TensorDB db = new TensorDB();
-        int result = db.processTensor();
-        System.out.println("RUST_JNI::"+result);
+
+        // Store a tensor
+        String tensorJson = "[[1.0, 2.0], [3.0, 4.0]]";
+        db.store("tensor1", tensorJson);
+        System.out.println("Stored tensor: " + tensorJson);
+
+        // Retrieve the tensor
+        String retrievedTensor = db.get("tensor1");
+        System.out.println("Retrieved tensor: " + retrievedTensor);
     }
 }
