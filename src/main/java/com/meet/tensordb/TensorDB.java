@@ -1,8 +1,10 @@
 package com.meet.tensordb;
+
 public class TensorDB {
     static {
         System.load(System.getProperty("user.dir") + "/tensorlib.dll");
     }
+
     public native void store(String key, String data);
     public native String get(String key);
     public static void main(String[] args) {
