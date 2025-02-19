@@ -14,5 +14,6 @@ public class TensorDB {
         System.out.println("Stored tensor: " + tensorJson);
         String retrievedTensor = db.get("tensor1");
         System.out.println("Retrieved tensor: " + retrievedTensor);
+        System.out.println("The required tensor was processed");
     }
 }
